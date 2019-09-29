@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FSD APP</string>
+    <string name="liste_clients_titre">Liste des clients</string>
+    <string name="liste_contacts_titre">Liste des contacts</string>
+    <string name="liste_materiels_titre">Matériels</string>
+    <string name="settings">Paramètres</string>
+    <string name="erreurCategorie">La catégorie sélectionnée n\'existe pas !</string>
+</resources>

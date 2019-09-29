@@ -1,0 +1,51 @@
+[
+  {
+    "id": 1,
+    "nom": "AVALONE",
+    "adresse1": "152 Avenue Jean-Jaurès",
+    "adresse2": null,
+    "idcpville": 1
+  },
+  {
+    "id": 2,
+    "nom": "CGI",
+    "adresse1": null,
+    "adresse2": null,
+    "idcpville": null
+  },
+  {
+    "id": 3,
+    "nom": "EPSI",
+    "adresse1": null,
+    "adresse2": null,
+    "idcpville": null
+  },
+  {
+    "id": 4,
+    "nom": "CAP GEMINI",
+    "adresse1": null,
+    "adresse2": null,
+    "idcpville": null
+  },
+  {
+    "id": 5,
+    "nom": "EDF",
+    "adresse1": null,
+    "adresse2": null,
+    "idcpville": null
+  },
+  {
+    "id": 6,
+    "nom": "ORANGE",
+    "adresse1": null,
+    "adresse2": null,
+    "idcpville": null
+  },
+  {
+    "id": 7,
+    "nom": "SFR",
+    "adresse1": null,
+    "adresse2": null,
+    "idcpville": null
+  }
+]

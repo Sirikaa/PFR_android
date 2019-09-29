@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="60dp">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayoutMaterielExpandable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:padding="7dp">
+
+    <TextView
+        android:id="@+id/libelleItfc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="100dp"
+        android:text="eth0"
+        android:layout_alignLeft="@+id/nomContact"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/typeItfc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BLUETOOTH"
+        android:layout_toRightOf="@id/libelleItfc"
+        android:layout_alignLeft="@id/typeAffectation"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/ipV4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="100dp"
+        android:layout_below="@id/libelleItfc"
+        android:text="192.168.254.250" />
+
+        <TextView
+            android:id="@+id/ipV6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ipV4"
+            android:layout_alignLeft="@id/typeItfc"
+            android:layout_below="@id/libelleItfc"
+            android:text="IPV6" />
+
+        <TextView
+            android:id="@+id/typeAffectation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ipV4"
+            android:layout_below="@id/libelleItfc"
+            android:text="STATIC" />
+
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "libelle": "Gérant"
+  },
+  {
+    "id": 2,
+    "libelle": "Directeur"
+  },
+  {
+    "id": 3,
+    "libelle": "Technicien"
+  },
+  {
+    "id": 4,
+    "libelle": "Commercial"
+  },
+  {
+    "id": 5,
+    "libelle": "Intervenant"
+  },
+  {
+    "id": 6,
+    "libelle": "Consultant"
+  }
+]

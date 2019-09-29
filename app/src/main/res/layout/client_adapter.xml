@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#1E88E5"
+    android:paddingLeft="7dp"
+    android:paddingBottom="0.5dp">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:padding="7dp">
+
+        <ImageView
+            android:id="@+id/imageEntreprise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/entreprise"/>
+
+        <TextView
+            android:id="@+id/nomEntreprise"
+            android:layout_width="230dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imageEntreprise"
+            android:layout_marginTop="12dp"
+            android:singleLine="true"
+            android:text="NOM ENTREPRISE"
+            android:gravity="center_horizontal"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <ImageView
+            android:id="@+id/imageContact"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@+id/nomEntreprise"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/nb_contact"/>
+
+        <TextView
+            android:id="@+id/nombreContacts"
+            android:layout_width="17dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imageContact"
+            android:layout_marginTop="12dp"
+            android:text=""
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <ImageView
+            android:id="@+id/imageMateriel"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="12dp"
+            android:layout_toRightOf="@+id/nombreContacts"
+            android:layout_alignParentTop="true"
+            android:layout_marginRight="5dp"
+            android:singleLine="true"
+            android:src="@drawable/nb_materiel"/>
+
+        <TextView
+            android:id="@+id/nombreMateriels"
+            android:layout_width="17dp"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/imageMateriel"
+            android:layout_marginTop="12dp"
+            android:text=""
+            android:singleLine="true"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </RelativeLayout>
+</RelativeLayout>

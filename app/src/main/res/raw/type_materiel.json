@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "libelle": "Imprimante"
+  },
+  {
+    "id": 2,
+    "libelle": "Switch"
+  },
+  {
+    "id": 3,
+    "libelle": "Routeur"
+  },
+  {
+    "id": 4,
+    "libelle": "Serveur"
+  },
+  {
+    "id": 5,
+    "libelle": "Ordinateur"
+  }
+]

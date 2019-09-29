@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "nom": "eth0",
+    "mac": "01:02:02:02:02",
+    "idtype": 1,
+    "idmateriel": 5
+  },
+  {
+    "id": 2,
+    "nom": "eth1",
+    "mac": "01:02:02:02:03",
+    "idtype": 1,
+    "idmateriel": 5
+  },
+  {
+    "id": 3,
+    "nom": "wl0",
+    "mac": "18:1F:01:01:01",
+    "idtype": 4,
+    "idmateriel": 4
+  },
+  {
+    "id": 4,
+    "nom": "eth0",
+    "mac": "18:1F:01:01:02",
+    "idtype": 2,
+    "idmateriel": 4
+  },
+  {
+    "id": 5,
+    "nom": "eth0",
+    "mac": "E6:1F:01:01:01",
+    "idtype": 1,
+    "idmateriel": 3
+  },
+  {
+    "id": 6,
+    "nom": "eth1",
+    "mac": "E6:1F:01:01:02",
+    "idtype": 1,
+    "idmateriel": 3
+  },
+  {
+    "id": 7,
+    "nom": "eth2",
+    "mac": "E6:1F:01:01:03",
+    "idtype": 1,
+    "idmateriel": 3
+  },
+  {
+    "id": 8,
+    "nom": "eth3",
+    "mac": "E6:1F:01:01:04",
+    "idtype": 1,
+    "idmateriel": 3
+  }
+]

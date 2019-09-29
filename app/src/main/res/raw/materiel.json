@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "libelle": "Dell 1520",
+    "idclient": 1,
+    "idtype": 1
+  },
+  {
+    "id": 2,
+    "libelle": "NETGEAR DS1008",
+    "idclient": 1,
+    "idtype": 2
+  },
+  {
+    "id": 3,
+    "libelle": "NETGEAR DS1005",
+    "idclient": 1,
+    "idtype": 2
+  },
+  {
+    "id": 4,
+    "libelle": "TP-LINK GS108",
+    "idclient": 1,
+    "idtype": 3
+  },
+  {
+    "id": 5,
+    "libelle": "PASSERELLE LINUX",
+    "idclient": 1,
+    "idtype": 4
+  },
+  {
+    "id": 6,
+    "libelle": "DEV NICOLAS",
+    "idclient": 1,
+    "idtype": 4
+  },
+  {
+    "id": 7,
+    "libelle": "TEST",
+    "idclient": 2,
+    "idtype": 4
+  }
+]
