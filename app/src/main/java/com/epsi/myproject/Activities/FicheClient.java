@@ -49,17 +49,17 @@ public class FicheClient extends AppCompatActivity{
             villeClientLabel.setVisibility(View.GONE);
             villeClient.setVisibility(View.GONE);
         }
-        villeClient.setText(c.getVille());
+        villeClient.setText(c.getVille().getVille());
 
         TextView cpClient = (TextView) findViewById(R.id.cpClient);
-        if(c.getCp() == null){
+        if(c.getVille().getCp() == null){
             TextView cpClientLabel = (TextView) findViewById(R.id.cpClientLabel);
             cpClientLabel.setVisibility(View.GONE);
             cpClient.setVisibility(View.GONE);
         }
-        cpClient.setText(c.getCp());
+        cpClient.setText(c.getVille().getCp());
 
-        if(c.getAdresse1() == null && c.getAdresse2() == null && c.getVille() == null && c.getCp() == null){
+        if(c.getAdresse1() == null && c.getAdresse2() == null && c.getVille().getVille() == null && c.getVille().getCp() == null){
 
         }else{
             TextView aucuneInfo = (TextView) findViewById(R.id.aucuneInfo);

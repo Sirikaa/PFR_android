@@ -1,4 +1,4 @@
-package com.epsi.myproject;
+package com.epsi.myproject.Adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import com.epsi.myproject.Client;
+import com.epsi.myproject.R;
 
 import java.util.List;
 
@@ -52,8 +55,8 @@ public class ClientAdapter extends BaseAdapter {
 
 
         nomEntreprise.setText(client.getNom());
-        nombreContacts.setText(String.valueOf(client.getListe_contacts().size()));
-        nombreMateriels.setText(String.valueOf(client.getListe_materiels().size()));
+        nombreContacts.setText(String.valueOf(client.getContacts().size()));
+        nombreMateriels.setText(String.valueOf(client.getMateriels().size()));
 
         //TODO NOMBRE MATERIELS
         return arg1;

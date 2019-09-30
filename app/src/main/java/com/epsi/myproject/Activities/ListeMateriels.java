@@ -1,6 +1,5 @@
 package com.epsi.myproject.Activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -15,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.epsi.myproject.Client;
 import com.epsi.myproject.Materiel;
-import com.epsi.myproject.MaterielAdapter;
+import com.epsi.myproject.Adapters.MaterielAdapter;
 import com.epsi.myproject.R;
 
 import java.util.ArrayList;
@@ -23,7 +22,7 @@ import java.util.List;
 
 
 public class ListeMateriels extends AppCompatActivity {
-    private Client c;
+    /*private Client c;
     private List<Materiel> materielList;
     private ExpandableListView listView;
     private MaterielAdapter adapter;
@@ -107,7 +106,7 @@ public class ListeMateriels extends AppCompatActivity {
                 //startActivity(intent);
             }
         });*/
-        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        /*listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
                 Materiel materiel = materielList.get(pos);

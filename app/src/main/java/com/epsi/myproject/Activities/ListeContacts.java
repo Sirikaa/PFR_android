@@ -9,8 +9,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.epsi.myproject.Client;
-import com.epsi.myproject.Contact;
-import com.epsi.myproject.ContactAdapter;
+import com.epsi.myproject.Adapters.ContactAdapter;
+import com.epsi.myproject.Personne;
 import com.epsi.myproject.R;
 
 import java.util.List;
@@ -25,7 +25,7 @@ public class ListeContacts extends AppCompatActivity{
 
         Bundle extras = getIntent().getExtras();
         Client c = (Client) extras.getSerializable("objClient");
-        final List<Contact> contacts = c.getListe_contacts();
+        final List<Personne> contacts = c.getContacts();
         ContactAdapter adapter = new ContactAdapter(this, contacts);
         ListView contactView = (ListView) findViewById(R.id.listViewContact);
         contactView.setAdapter(adapter);
@@ -34,7 +34,7 @@ public class ListeContacts extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //TODO A FAIRE QUAND ON VOUDRA MODIFIER OU SUPPRIMER UN CONTACT
-                Contact contact = contacts.get(position);
+                Personne contact = contacts.get(position);
                 //Intent intent = new Intent(ListeContacts.this, .class);
                 //intent.putExtra("", );
                 //startActivity(intent);

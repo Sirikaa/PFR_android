@@ -2,11 +2,43 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Matricule : "
+        android:padding="10dp"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/labelMatricule"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/labelMatricule"
+        android:id="@+id/matricule"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password : "
+        android:layout_marginBottom="10dp"
+        android:padding="10dp"
+        android:layout_below="@id/labelMatricule"
+        android:id="@+id/labelPassword"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/labelPassword"
+        android:layout_below="@id/matricule"
+        android:id="@+id/password"
+        />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CLICK"
+        android:text="LOGIN"
         android:layout_marginBottom="10dp"
+        android:layout_below="@id/labelPassword"
         android:id="@+id/clickmebutton"
         />
 

@@ -12,8 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.epsi.myproject.Client;
-import com.epsi.myproject.ClientAdapter;
-import com.epsi.myproject.Contact;
+import com.epsi.myproject.Adapters.ClientAdapter;
 import com.epsi.myproject.Interface;
 import com.epsi.myproject.Materiel;
 import com.epsi.myproject.R;
@@ -30,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListeClients extends AppCompatActivity{
-    private static final String URI = "http://192.168.1.16:8080/resoapi/api/";
+    /*private static final String URI = "http://192.168.1.16:8080/resoapi/api/";
     protected Context context;
 
     @Override
@@ -86,7 +85,7 @@ public class ListeClients extends AppCompatActivity{
 
                 //On ajoute la liste de ses matériels
                 List<Materiel> materiels = parseMateriel(client.getId());
-                client.setListe_materiels(materiels);
+                client.setMateriels(materiels);
 
                 cNom = clientObj.getString("clt_nom");
                 client.setNom(cNom);
@@ -183,7 +182,7 @@ public class ListeClients extends AppCompatActivity{
             /*Interface itf;
             List<Interface> lItf = new ArrayList<Interface>();*/
 
-            JSONArray completeArray = new JSONArray(sb.toString());
+            /*JSONArray completeArray = new JSONArray(sb.toString());
             for(int i =0; i<completeArray.length(); i++){
                 JSONObject materielObj = completeArray.getJSONObject(i);
                 Materiel m = new Materiel();
@@ -294,5 +293,5 @@ public class ListeClients extends AppCompatActivity{
         }else{
             return false;
         }
-    }
+    }*/
 }

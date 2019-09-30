@@ -1,4 +1,4 @@
-package com.epsi.myproject;
+package com.epsi.myproject.Adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -8,6 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+
+import com.epsi.myproject.Interface;
+import com.epsi.myproject.Materiel;
+import com.epsi.myproject.R;
 
 import java.util.List;
 
@@ -27,7 +31,7 @@ public class MaterielAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int i) {
-        return materiels.get(i).getListe_interfaces().size();
+        return materiels.get(i).getInterfaces().size();
     }
 
     @Override
@@ -37,7 +41,7 @@ public class MaterielAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int i, int i1) {
-        return materiels.get(i).getListe_interfaces().get(i1);
+        return materiels.get(i).getInterfaces().get(i1);
     }
 
     @Override
@@ -57,13 +61,14 @@ public class MaterielAdapter extends BaseExpandableListAdapter {
         return false;
     }
     public String getTypeMateriel(int i){
-        return materiels.get(i).getTypeMateriel();
+        //return materiels.get(i).getType();
+    return "toto";
     }
 
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
-        Log.d("valeur", "nb interfaces : "+materiels.get(i).getListe_interfaces().size());
-        if(materiels.get(i).getListe_interfaces().size() >0){
+        Log.d("valeur", "nb interfaces : "+materiels.get(i).getInterfaces().size());
+        if(materiels.get(i).getInterfaces().size() >0){
             if(view == null){
                 LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 view = inflater.inflate(R.layout.materiel_adapter, null);
@@ -106,14 +111,14 @@ public class MaterielAdapter extends BaseExpandableListAdapter {
         TextView typeAffectation = (TextView) view.findViewById(R.id.typeAffectation);
 
         libelleItfc.setText(infoM.getNom());
-        typeItfc.setText(infoM.getType());
+        /*typeItfc.setText(infoM.getType());
         ipV4.setText(infoM.getAdresseIpv4());
         if(infoM.getAdresseIpv6() != "null"){
             ipV6.setText(infoM.getAdresseIpv6());
         }else{
             ipV6.setVisibility(View.GONE);
         }
-        typeAffectation.setText(infoM.getTypeAffectation());
+        typeAffectation.setText(infoM.getTypeAffectation());*/
         return view;
     }
     @Override

@@ -1,59 +1,65 @@
 package com.epsi.myproject;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
-public class Materiel implements Serializable {
+public class Materiel implements Serializable{
 
-    private String id;
+    private int id;
     private String libelle;
-    private String typeMateriel;
-    private int idTypeMateriel;
-    private List<Interface> liste_interfaces = new ArrayList<Interface>();
+    private String serial;
+    private TypeMateriel type;
+    private List<Interface> interfaces;
 
-    public String getId() {
+    public Materiel() {}
+    public Materiel(int id, String libelle, String serial) {
+        this.setId(id);
+        this.setLibelle(libelle);
+        this.setSerial(serial);
+    }
+    public Materiel(int id, String libelle, String serial, TypeMateriel type, List<Interface> interfaces) {
+        this.setId(id);
+        this.setLibelle(libelle);
+        this.setSerial(serial);
+        this.setType(type);
+        this.setInterfaces(interfaces);
+    }
+
+    public Materiel(int id, String libelle, String serial, TypeMateriel type) {
+        this.setId(id);
+        this.setLibelle(libelle);
+        this.setSerial(serial);
+        this.setType(type);
+    }
+
+    public int getId() {
         return id;
     }
-
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
-    public List<Interface> getListe_interfaces() {
-        return liste_interfaces;
-    }
-
-    public void setListe_interfaces(List<Interface> liste_interfaces) {
-        this.liste_interfaces = liste_interfaces;
-    }
-
-    public void setInterface(Interface i){
-        this.liste_interfaces.add(i);
-    }
-
-    public String getTypeMateriel() {
-        return typeMateriel;
-    }
-
-    public void setTypeMateriel(String typeMateriel) {
-        this.typeMateriel = typeMateriel;
-    }
-
     public String getLibelle() {
         return libelle;
     }
-
     public void setLibelle(String libelle) {
         this.libelle = libelle;
     }
-
-    public int getIdTypeMateriel() {
-        return idTypeMateriel;
+    public String getSerial() {
+        return serial;
     }
-
-    public void setIdTypeMateriel(int idTypeMateriel) {
-        this.idTypeMateriel = idTypeMateriel;
+    public void setSerial(String serial) {
+        this.serial = serial;
     }
-
-
+    public TypeMateriel getType() {
+        return type;
+    }
+    public void setType(TypeMateriel type) {
+        this.type = type;
+    }
+    public List<Interface> getInterfaces() {
+        return interfaces;
+    }
+    public void setInterfaces(List<Interface> interfaces) {
+        this.interfaces = interfaces;
+    }
 }
