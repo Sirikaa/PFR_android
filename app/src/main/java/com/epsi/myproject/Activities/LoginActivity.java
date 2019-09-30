@@ -1,7 +1,6 @@
 package com.epsi.myproject.Activities;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,7 +20,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.epsi.myproject.Client;
-import com.epsi.myproject.Persistence.ClientPersistence;
+import com.epsi.myproject.Persistence.JsonApiPersistence;
 import com.epsi.myproject.R;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
     EditText matricule;
     EditText password;
     Button loginButton;
-    public static TextView data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -45,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         matricule = (EditText) findViewById(R.id.matricule);
         password = (EditText) findViewById(R.id.password);
         loginButton = (Button) findViewById(R.id.clickmebutton);
-        data = (TextView) findViewById(R.id.databdd);
 
         loginButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -53,15 +50,14 @@ public class LoginActivity extends AppCompatActivity {
                 StringRequest req = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String resp) {
-                        //Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
                         try{
                             JSONObject jsonClient = new JSONObject(resp);
-                            client = ClientPersistence.parseClientJson(jsonClient);
+                            client = JsonApiPersistence.parseClientJson(jsonClient);
                             Log.i("FSD", "Client récupéré du JSON ! BONJOUR "+client.getNom()+" !!!");
                         }catch(JSONException jse){
                             jse.printStackTrace();
                         }
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        Intent intent = new Intent(LoginActivity.this, FicheClient.class);
                         intent.putExtra("objClient", client);
                         startActivity(intent);
                     }

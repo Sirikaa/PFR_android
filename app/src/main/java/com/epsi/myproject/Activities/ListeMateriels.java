@@ -22,7 +22,7 @@ import java.util.List;
 
 
 public class ListeMateriels extends AppCompatActivity {
-    /*private Client c;
+    private Client c;
     private List<Materiel> materielList;
     private ExpandableListView listView;
     private MaterielAdapter adapter;
@@ -44,19 +44,19 @@ public class ListeMateriels extends AppCompatActivity {
         return true;
     }
     private void setCategories(){
-        ArrayList<Materiel> listeCat = (ArrayList) c.getListe_materiels();
+        ArrayList<Materiel> listeCat = (ArrayList) c.getMateriels();
         boolean exists = true;
         categories.add(ALLCAT);
         for(int i=0;i<listeCat.size();i++){
             for(int j=0;j<categories.size();j++){
-                if(listeCat.get(i).getTypeMateriel().equals(categories.get(j))){
+                if(listeCat.get(i).getType().getLibelle().equals(categories.get(j))){
                     exists = true;
                 }else{
                     exists = false;
                 }
             }
            if(!exists){
-               categories.add(listeCat.get(i).getTypeMateriel());
+               categories.add(listeCat.get(i).getType().getLibelle());
            }
         }
     }
@@ -66,7 +66,7 @@ public class ListeMateriels extends AppCompatActivity {
     private void initializeView(){
         Bundle extras = getIntent().getExtras();
         c = (Client) extras.getSerializable("objClient");
-        materielList = c.getListe_materiels();
+        materielList = c.getMateriels();
         Log.d("valeur", "Client : "+c.getNom());
         setCategories();
         Log.d("valeur", "Catégories : "+categories.toString());
@@ -101,12 +101,12 @@ public class ListeMateriels extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //TODO A FAIRE QUAND ON VOUDRA MODIFIER OU SUPPRIMER UN CONTACT
                 Materiel materiel = materiels.get(position);
-                //Intent intent = new Intent(ListeContacts.this, .class);
-                //intent.putExtra("", );
-                //startActivity(intent);
+                Intent intent = new Intent(ListeContacts.this, .class);
+                intent.putExtra("", );
+                startActivity(intent);
             }
         });*/
-        /*listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> arg0, View arg1, int pos, long id) {
                 Materiel materiel = materielList.get(pos);
@@ -120,9 +120,9 @@ public class ListeMateriels extends AppCompatActivity {
     private void getSelectedCategoryData(String typeCat, String defaultCat) {
         ArrayList<Materiel> materielsCorrespondants = new ArrayList<>();
         //On ne va envoyer que les matériels qui sont de la bonne catégorie.
-        for(int i=0;i<c.getListe_materiels().size();i++){
-            if(c.getListe_materiels().get(i).getTypeMateriel().equals(typeCat) || typeCat.equals(ALLCAT)){
-                materielsCorrespondants.add(c.getListe_materiels().get(i));
+        for(int i=0;i<c.getMateriels().size();i++){
+            if(c.getMateriels().get(i).getType().getLibelle().equals(typeCat) || typeCat.equals(ALLCAT)){
+                materielsCorrespondants.add(c.getMateriels().get(i));
             }
         }
         adapter = new MaterielAdapter(this, materielsCorrespondants);
