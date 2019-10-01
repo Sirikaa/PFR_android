@@ -16,20 +16,20 @@ import java.util.List;
 public class ContactAdapter extends BaseAdapter {
 
     protected Context _context;
-    List<Personne> contactList;
+    List<Personne> contactsList;
 
     public ContactAdapter(Context context, List<Personne> cList){
         _context = context;
-        contactList = cList;
+        contactsList = cList;
     }
 
     @Override
     public int getCount() {
-        return contactList.size();
+        return contactsList.size();
     }
     @Override
     public Object getItem(int arg0) {
-        return contactList.get(arg0);
+        return contactsList.get(arg0);
     }
     @Override
     public long getItemId(int arg0) {
@@ -49,10 +49,10 @@ public class ContactAdapter extends BaseAdapter {
         TextView emailContact = (TextView) arg1.findViewById(R.id.emailContact);
         //TextView fonctionContact = (TextView) arg1.findViewById(R.id.fonctionContact);
 
-        Personne contact = contactList.get(arg0);
+        Personne contact = contactsList.get(arg0);
 
         nomContact.setText(contact.getNom()+" "+contact.getPrenom());
-        if(contact.getTelephone() == null){
+        if(contact.getTelephone() == "" || contact.getTelephone() == null || contact.getTelephone() == "null" || contact.getTelephone().isEmpty()){
             //Je ne peux pas le mettre car ça me supprime aussi ceux qui ne sont pas null...
             //telContact.setVisibility(View.GONE);
             telContact.setText("Tél: ");

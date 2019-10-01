@@ -57,8 +57,6 @@ public class ClientAdapter extends BaseAdapter {
         nomEntreprise.setText(client.getNom());
         nombreContacts.setText(String.valueOf(client.getContacts().size()));
         nombreMateriels.setText(String.valueOf(client.getMateriels().size()));
-
-        //TODO NOMBRE MATERIELS
         return arg1;
     }
 

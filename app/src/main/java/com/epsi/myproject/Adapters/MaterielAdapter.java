@@ -98,8 +98,8 @@ public class MaterielAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        Interface infoM = (Interface) getChild(i,i1);
-        Log.d("valeur", "nom Interface : "+infoM.getNom());
+        Interface itf = (Interface) getChild(i,i1);
+        Log.d("valeur", "nom Interface : "+itf.getNom());
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.materiel_adapter_expandable, null);
@@ -110,15 +110,15 @@ public class MaterielAdapter extends BaseExpandableListAdapter {
         TextView ipV6 = (TextView) view.findViewById(R.id.ipV6);
         TextView typeAffectation = (TextView) view.findViewById(R.id.typeAffectation);
 
-        libelleItfc.setText(infoM.getNom());
-        /*typeItfc.setText(infoM.getType());
-        ipV4.setText(infoM.getAdresseIpv4());
-        if(infoM.getAdresseIpv6() != "null"){
-            ipV6.setText(infoM.getAdresseIpv6());
+        libelleItfc.setText(itf.getNom());
+        typeItfc.setText(itf.getType().getLibelle());
+        ipV4.setText(itf.getAdressesIp().get(1).getIpv4());
+        if(itf.getAdressesIp().get(1).getIpv6() != "null"){
+            ipV6.setText(itf.getAdressesIp().get(1).getIpv6());
         }else{
             ipV6.setVisibility(View.GONE);
         }
-        typeAffectation.setText(infoM.getTypeAffectation());*/
+        typeAffectation.setText(itf.getType().getLibelle());
         return view;
     }
     @Override
