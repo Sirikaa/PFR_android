@@ -2,17 +2,14 @@ package com.epsi.myproject.Adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
-
 import com.epsi.myproject.Interface;
 import com.epsi.myproject.Materiel;
 import com.epsi.myproject.R;
-
 import java.util.List;
 
 public class MaterielAdapter extends BaseExpandableListAdapter {
@@ -60,14 +57,9 @@ public class MaterielAdapter extends BaseExpandableListAdapter {
     public boolean hasStableIds() {
         return false;
     }
-    public String getTypeMateriel(int i){
-        //return materiels.get(i).getType();
-    return "toto";
-    }
 
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
-        Log.d("valeur", "nb interfaces : "+materiels.get(i).getInterfaces().size());
         if(materiels.get(i).getInterfaces().size() >0){
             if(view == null){
                 LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -93,32 +85,33 @@ public class MaterielAdapter extends BaseExpandableListAdapter {
             libelleMateriel.setText(s);
             return view;
         }
-
     }
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        Interface itf = (Interface) getChild(i,i1);
-        Log.d("valeur", "nom Interface : "+itf.getNom());
-        if(view == null){
-            LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = inflater.inflate(R.layout.materiel_adapter_expandable, null);
-        }
-        TextView libelleItfc = (TextView) view.findViewById(R.id.libelleItfc);
-        TextView typeItfc = (TextView) view.findViewById(R.id.typeItfc);
-        TextView ipV4 = (TextView) view.findViewById(R.id.ipV4);
-        TextView ipV6 = (TextView) view.findViewById(R.id.ipV6);
-        TextView typeAffectation = (TextView) view.findViewById(R.id.typeAffectation);
+        if(materiels.get(i).getInterfaces().size() >0){
+            Interface itf = (Interface) getChild(i,i1);
+            if(view == null){
+                LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                view = inflater.inflate(R.layout.materiel_adapter_expandable, null);
+            }
+            TextView libelleItfc = view.findViewById(R.id.libelleItfc);
+            TextView typeItfc = view.findViewById(R.id.typeItfc);
+            TextView ipV4 = view.findViewById(R.id.ipV4);
+            TextView ipV6 = view.findViewById(R.id.ipV6);
+            TextView typeAffectation = view.findViewById(R.id.typeAffectation);
 
-        libelleItfc.setText(itf.getNom());
-        typeItfc.setText(itf.getType().getLibelle());
-        ipV4.setText(itf.getAdressesIp().get(1).getIpv4());
-        if(itf.getAdressesIp().get(1).getIpv6() != "null"){
-            ipV6.setText(itf.getAdressesIp().get(1).getIpv6());
-        }else{
-            ipV6.setVisibility(View.GONE);
+            libelleItfc.setText(itf.getNom());
+            typeItfc.setText(itf.getType().getLibelle());
+            ipV4.setText(itf.getAdressesIp().get(0).getIpv4());
+
+            if(itf.getAdressesIp().get(0).getIpv6() != "null"){
+                ipV6.setText(itf.getAdressesIp().get(0).getIpv6());
+            }else{
+                //ipV6.setVisibility(View.GONE);
+            }
+            typeAffectation.setText(itf.getType().getLibelle());
         }
-        typeAffectation.setText(itf.getType().getLibelle());
         return view;
     }
     @Override

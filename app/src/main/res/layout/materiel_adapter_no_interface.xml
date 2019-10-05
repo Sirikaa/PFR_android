@@ -8,21 +8,10 @@
     android:background="#FFFFFF"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
-
-    <RelativeLayout
-        android:id="@+id/relativeLayoutMateriel"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/libelleMateriel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:padding="7dp">
-
-        <TextView
-            android:id="@+id/libelleMateriel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-    </RelativeLayout>
-
+        android:text=""
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 </RelativeLayout>

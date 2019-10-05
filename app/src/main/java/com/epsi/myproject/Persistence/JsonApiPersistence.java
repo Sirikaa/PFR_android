@@ -9,13 +9,12 @@ import com.epsi.myproject.TypeAffectation;
 import com.epsi.myproject.TypeInterface;
 import com.epsi.myproject.TypeMateriel;
 import com.epsi.myproject.Ville;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public abstract class JsonApiPersistence {
 
@@ -59,8 +58,14 @@ public abstract class JsonApiPersistence {
     public static TypeMateriel parseTypeMaterielJson(JSONObject json) throws JSONException{
         return new TypeMateriel(json.getInt("id"), json.getString("libelle"));
     }
-    public static Materiel parseMaterielJson(JSONObject json) throws JSONException{
-        return new Materiel(json.getInt("id"), json.getString("libelle"), json.getString("serial"), parseTypeMaterielJson(json.getJSONObject(TYPE_MATERIEL_JSON_ARRAY_NAME)), parseInterfacesJsonArray(json.getJSONArray(INTERFACES_JSON_ARRAY_NAME)));
+    public static Materiel parseMaterielJson(JSONObject json){
+        Materiel m = null;
+        try{
+            m = new Materiel(json.getInt("id"), json.getString("libelle"), json.getString("serial"), parseTypeMaterielJson(json.getJSONObject(TYPE_MATERIEL_JSON_ARRAY_NAME)), parseInterfacesJsonArray(json.getJSONArray(INTERFACES_JSON_ARRAY_NAME)));
+        }catch(JSONException je){
+            je.printStackTrace();
+        }
+        return m;
     }
     public static List<Materiel> parseMaterielsJsonArray(JSONArray jsonArray) throws JSONException{
         List<Materiel> materiels = new ArrayList<Materiel>();
@@ -86,5 +91,81 @@ public abstract class JsonApiPersistence {
     }
     public static Client parseClientJson(JSONObject json) throws JSONException {
         return new Client(json.getInt("id"), json.getString("nom"), json.getString("matricule"), json.getString("password"), json.getString("adresse1"), json.getString("adresse2"), parseVilleJson(json), parsePersonnesJsonArray(json.getJSONArray(PERSONNES_JSON_ARRAY_NAME)), parseMaterielsJsonArray(json.getJSONArray(MATERIELS_JSON_ARRAY_NAME)));
+    }
+    public static ArrayList<JSONObject> jsonArrayToJsonObjects(JSONArray jsonArray) throws JSONException {
+        ArrayList<JSONObject> jsons = new ArrayList<JSONObject>();
+        for(int i=0; i<jsonArray.length();i++){
+            jsons.add(jsonArray.getJSONObject(i));
+        }
+        return jsons;
+    }
+
+    //buildJsonObjects
+    public static JSONObject buildTypeMaterielJsonObject(int id, String libelle) throws JSONException {
+        JSONObject json = new JSONObject();
+        json.put("id", id);
+        json.put("libelle", libelle);
+        return json;
+    }
+    public static JSONObject buildMaterielJsonObject(String libelle, String numserie, TypeMateriel typeMateriel) throws JSONException {
+        JSONObject json = new JSONObject();
+        json.put("libelle", libelle);
+        json.put("serial", numserie);
+        json.put("type", buildTypeMaterielJsonObject(typeMateriel.getId(), typeMateriel.getLibelle()));
+        return json;
+    }
+
+    //Get infos of Client from BDD at each page
+    public static Client getInfosClient(int id){
+        Client cli = new Client();
+        try{
+            cli = JsonApiPersistence.parseClientJson(new JSONObject(new HttpGetRequest().execute("http://192.168.1.16:8080/resoapi/api/client/"+id).get()));
+        }catch(ExecutionException ee){
+            ee.printStackTrace();
+        }catch(InterruptedException ie){
+            ie.printStackTrace();
+        }catch(JSONException je){
+            je.printStackTrace();
+        }
+        return cli;
+    }
+
+    public static List<TypeMateriel> getTypesMateriel(){
+        List<TypeMateriel> typesMateriel = new ArrayList<TypeMateriel>();
+        String TypesMaterielGetURI = "http://192.168.1.16:8080/resoapi/api/typesmateriel";
+        HttpGetRequest getRequest = new HttpGetRequest();
+        try{
+            String result = getRequest.execute(TypesMaterielGetURI).get();
+            for (int i=0; i<JsonApiPersistence.jsonArrayToJsonObjects(new JSONArray(result)).size(); i++){
+                TypeMateriel tm = JsonApiPersistence.parseTypeMaterielJson(JsonApiPersistence.jsonArrayToJsonObjects(new JSONArray(result)).get(i));
+                typesMateriel.add(tm);
+            }
+        }catch(ExecutionException ee){
+            ee.printStackTrace();
+        }catch(InterruptedException ie){
+            ie.printStackTrace();
+        }catch(JSONException je) {
+            je.printStackTrace();
+        }
+        return typesMateriel;
+    }
+    public static List<Personne> getContacts(int idClient){
+        List<Personne> personnes = new ArrayList<Personne>();
+        String TypesMaterielGetURI = "http://192.168.1.16:8080/resoapi/api/client/"+idClient+"/contacts";
+        HttpGetRequest getRequest = new HttpGetRequest();
+        try{
+            String result = getRequest.execute(TypesMaterielGetURI).get();
+            for (int i=0; i<JsonApiPersistence.jsonArrayToJsonObjects(new JSONArray(result)).size(); i++){
+                Personne p = JsonApiPersistence.parsePersonneJson(JsonApiPersistence.jsonArrayToJsonObjects(new JSONArray(result)).get(i));
+                personnes.add(p);
+            }
+        }catch(ExecutionException ee){
+            ee.printStackTrace();
+        }catch(InterruptedException ie){
+            ie.printStackTrace();
+        }catch(JSONException je) {
+            je.printStackTrace();
+        }
+        return personnes;
     }
 }

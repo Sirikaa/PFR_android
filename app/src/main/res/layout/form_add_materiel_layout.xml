@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/libLibelleMateriel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Libellé : " />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/formLibelleMateriel"
+        android:hint="Libellé"
+        />
+    <TextView
+        android:id="@+id/libSerialMateriel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="N° de série : " />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/formSerialMateriel"
+        android:hint="Serial"
+        />
+    <TextView
+        android:id="@+id/libTypeMaterielMateriel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Type : " />
+    <Spinner
+        android:id="@+id/formSpinnerTypeMaterielMateriel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonAddMateriel"
+        android:text="Ajouter"
+        />
+</LinearLayout>

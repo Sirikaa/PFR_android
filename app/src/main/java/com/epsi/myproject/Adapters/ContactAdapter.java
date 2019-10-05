@@ -52,12 +52,11 @@ public class ContactAdapter extends BaseAdapter {
         Personne contact = contactsList.get(arg0);
 
         nomContact.setText(contact.getNom()+" "+contact.getPrenom());
-        if(contact.getTelephone() == "" || contact.getTelephone() == null || contact.getTelephone() == "null" || contact.getTelephone().isEmpty()){
-            //Je ne peux pas le mettre car ça me supprime aussi ceux qui ne sont pas null...
-            //telContact.setVisibility(View.GONE);
-            telContact.setText("Tél: ");
-        }else{
+        if(contact.getTelephone() != "" && contact.getTelephone() != null){
             telContact.setText("Tél: " + contact.getTelephone());
+
+        }else{
+            telContact.setText("Tél: ");
         }
         if(contact.getEmail() == null){
             emailContact.setText("E-mail: ");

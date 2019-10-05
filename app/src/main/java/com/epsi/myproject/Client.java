@@ -95,4 +95,9 @@ public class Client implements Serializable{
     public void setVille(Ville ville) {
         this.ville = ville;
     }
+    public void addMateriel(Materiel m){
+        List<Materiel> materiels = this.getMateriels();
+        materiels.add(m);
+        this.setMateriels(materiels);
+    }
 }

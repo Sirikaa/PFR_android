@@ -7,12 +7,11 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-
 import com.epsi.myproject.Client;
 import com.epsi.myproject.Adapters.ContactAdapter;
+import com.epsi.myproject.Persistence.JsonApiPersistence;
 import com.epsi.myproject.Personne;
 import com.epsi.myproject.R;
-
 import java.util.List;
 
 
@@ -24,11 +23,11 @@ public class ListeContacts extends AppCompatActivity{
         setContentView(R.layout.liste_contacts);
 
         Bundle extras = getIntent().getExtras();
-        Client c = (Client) extras.getSerializable("objClient");
-        final List<Personne> contacts = c.getContacts();
-        ContactAdapter adapter = new ContactAdapter(this, contacts);
-        ListView contactView = (ListView) findViewById(R.id.listViewContact);
-        contactView.setAdapter(adapter);
+        int idClient = (int) extras.getSerializable("idClient");
+        final List<Personne> contacts = JsonApiPersistence.getContacts(idClient);
+
+        ListView contactView = findViewById(R.id.listViewContact);
+        contactView.setAdapter(new ContactAdapter(this, contacts));
 
         contactView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

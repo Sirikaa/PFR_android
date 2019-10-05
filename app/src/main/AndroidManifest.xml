@@ -30,6 +30,9 @@
         <activity
             android:name=".Activities.ListeMateriels"
             android:label="@string/app_name" />
+        <activity
+            android:name=".Activities.FormAddMateriel"
+            android:label="@string/app_name" />
     </application>
 
 </manifest>
