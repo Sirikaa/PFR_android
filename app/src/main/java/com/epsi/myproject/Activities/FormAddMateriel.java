@@ -3,16 +3,17 @@ package com.epsi.myproject.Activities;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import com.epsi.myproject.Adapters.TypeMaterielSpinner;
-import com.epsi.myproject.Client;
+import com.epsi.myproject.Materiel;
+import com.epsi.myproject.Persistence.HttpGetRequest;
 import com.epsi.myproject.Persistence.JsonApiPersistence;
 import com.epsi.myproject.R;
 import com.epsi.myproject.TypeMateriel;
@@ -32,6 +33,7 @@ import java.util.List;
 
 public class FormAddMateriel extends AppCompatActivity {
     private int idClient;
+    private int idMateriel;
     private EditText libelleMateriel;
     private EditText serialMateriel;
     private Button addMaterielButton;
@@ -41,6 +43,7 @@ public class FormAddMateriel extends AppCompatActivity {
     private String categorieSelected;
     private List<Integer> idsCategories = new ArrayList<>();
     private int idTypeMaterielSelected;
+    private boolean isUpdate = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -48,12 +51,19 @@ public class FormAddMateriel extends AppCompatActivity {
         setContentView(R.layout.form_add_materiel_layout);
 
         Bundle extras = getIntent().getExtras();
-        int idClient = (int) extras.getSerializable("idClient");
+        idClient = extras.getInt("idClient");
 
-        initializeView();
+        //On vérifie si on va update ou add
+        if(getIntent().hasExtra("idMateriel")){
+            idMateriel = (int) extras.getSerializable("idMateriel");
+            isUpdate = true;
+            initializeUpdateView();
+        }else{
+            initializeAddView();
+        }
     }
 
-    private void initializeView(){
+    private void initializeAddView(){
         URL = "http://192.168.1.16:8080/resoapi/api/materiels/client/"+idClient;
         libelleMateriel = findViewById(R.id.formLibelleMateriel);
         addMaterielButton = findViewById(R.id.buttonAddMateriel);
@@ -83,12 +93,12 @@ public class FormAddMateriel extends AppCompatActivity {
         addMaterielButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                new HTTPAsyncTask().execute(URL);
+                new HTTPAsyncPostTask().execute(URL);
             }
         });
     }
 
-    public class HTTPAsyncTask extends AsyncTask<String, Void, String> {
+    public class HTTPAsyncPostTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... urls) {
             try {
@@ -129,6 +139,117 @@ public class FormAddMateriel extends AppCompatActivity {
         }
 
         private void setPostRequestContent(HttpURLConnection conn, JSONObject jsonObject) throws IOException {
+            OutputStream os = conn.getOutputStream();
+            BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+            writer.write(jsonObject.toString());
+            writer.flush();
+            writer.close();
+            os.close();
+        }
+
+        private String convertStreamToString(InputStream is) {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+            try {
+                while ((line = reader.readLine()) != null) {
+                    sb.append(line);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            return sb.toString();
+        }
+    }
+
+    private void initializeUpdateView(){
+        final Materiel  materiel = JsonApiPersistence.getInfosMateriel(idMateriel);
+        URL = "http://192.168.1.16:8080/resoapi/api/client/"+idClient+"/materiel/"+idMateriel;
+        libelleMateriel = findViewById(R.id.formLibelleMateriel);
+        addMaterielButton = findViewById(R.id.buttonAddMateriel);
+        serialMateriel = findViewById(R.id.formSerialMateriel);
+
+        addMaterielButton.setText("Enregistrer les modifications");
+        libelleMateriel.setText(materiel.getLibelle());
+        serialMateriel.setText(materiel.getSerial());
+
+        //Car le premier champ de la liste est du vide.
+        categories.add("");
+        idsCategories.add(0);
+
+        typeMaterielSpinner = TypeMaterielSpinner.initTypeMaterielSpinner(this,(Spinner) findViewById(R.id.formSpinnerTypeMaterielMateriel), categories);
+        typeMaterielSpinner.setSelection(materiel.getType().getId());
+        typeMaterielSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long itemID) {
+                if (position >= 0 && position < categories.size()) {
+                    idTypeMaterielSelected = TypeMaterielSpinner.getIdsTypeMateriel(idsCategories).get(position);
+                    categorieSelected = categories.get(position);
+                } else {
+                    Toast.makeText(FormAddMateriel.this, "Erreur dans le choix de la catégorie", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+
+        addMaterielButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                new HTTPAsyncPutTask().execute(URL);
+            }
+        });
+    }
+
+    public class HTTPAsyncPutTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
+            try {
+                try {
+                    return put(urls[0]);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    return "Error!";
+                }
+            } catch (IOException e) {
+                return "Unable to retrieve web page. URL may be invalid.";
+            }
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            Intent intent = new Intent(FormAddMateriel.this, ListeMateriels.class);
+            intent.putExtra("idClient", idClient);
+            startActivity(intent);
+        }
+
+        private String put(String myUrl) throws IOException, JSONException {
+            URL url = new URL(myUrl);
+
+            //On configure la connexion
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("PUT");
+            conn.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+
+            //On ajoute le JSON qu'on veut transmettre au serveur
+            setPutRequestContent(conn, JsonApiPersistence.buildMaterielJsonObject(libelleMateriel.getText().toString(), serialMateriel.getText().toString(), new TypeMateriel(idTypeMaterielSelected, categorieSelected)));
+
+            //On fait la requête POST sur l'URL
+            conn.connect();
+
+            //On récupère la réponse du serveur
+            return convertStreamToString(conn.getInputStream());
+        }
+
+        private void setPutRequestContent(HttpURLConnection conn, JSONObject jsonObject) throws IOException {
             OutputStream os = conn.getOutputStream();
             BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
             writer.write(jsonObject.toString());

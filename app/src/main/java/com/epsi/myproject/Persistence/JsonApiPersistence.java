@@ -129,7 +129,6 @@ public abstract class JsonApiPersistence {
         }
         return cli;
     }
-
     public static List<TypeMateriel> getTypesMateriel(){
         List<TypeMateriel> typesMateriel = new ArrayList<TypeMateriel>();
         String TypesMaterielGetURI = "http://192.168.1.16:8080/resoapi/api/typesmateriel";
@@ -167,5 +166,18 @@ public abstract class JsonApiPersistence {
             je.printStackTrace();
         }
         return personnes;
+    }
+    public static Materiel getInfosMateriel(int id){
+        Materiel m = new Materiel();
+        try{
+            m = JsonApiPersistence.parseMaterielJson(new JSONObject(new HttpGetRequest().execute("http://192.168.1.16:8080/resoapi/api/materiel/"+id).get()));
+        }catch(ExecutionException ee){
+            ee.printStackTrace();
+        }catch(InterruptedException ie){
+            ie.printStackTrace();
+        }catch(JSONException je){
+            je.printStackTrace();
+        }
+        return m;
     }
 }

@@ -4,41 +4,63 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/libLibelleMateriel"
+        android:id="@+id/libNomContact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Libellé : " />
+        android:text="Nom : " />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/formLibelleMateriel"
-        android:hint="Libellé"
+        android:id="@+id/formNomContact"
+        android:hint="Nom"
         />
     <TextView
-        android:id="@+id/libSerialMateriel"
+        android:id="@+id/libPrenomContact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="N° de série : " />
+        android:text="Prénom : " />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/formSerialMateriel"
-        android:hint="Serial"
+        android:id="@+id/formPrenomContact"
+        android:hint="Prénom"
         />
     <TextView
-        android:id="@+id/libTypeMaterielMateriel"
+        android:id="@+id/libTelContact"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Type : " />
+        android:text="Téléphone : " />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/formTelContact"
+        android:hint="Téléphone"
+        />
+    <TextView
+        android:id="@+id/libEmailContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="E-mail : " />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/formEmailContact"
+        android:hint="E-mail"
+        />
+    <TextView
+        android:id="@+id/libFonctionClient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Fonction : " />
     <Spinner
-        android:id="@+id/formSpinnerTypeMaterielMateriel"
+        android:id="@+id/formSpinnerFonctionClient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonAddMateriel"
+        android:id="@+id/buttonAddContact"
         android:text="Ajouter"
         />
 </LinearLayout>
