@@ -1,19 +1,22 @@
 package com.epsi.myproject.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.epsi.myproject.Adapters.TypeMaterielSpinner;
 import com.epsi.myproject.Materiel;
-import com.epsi.myproject.Persistence.HttpGetRequest;
 import com.epsi.myproject.Persistence.JsonApiPersistence;
 import com.epsi.myproject.R;
 import com.epsi.myproject.TypeMateriel;
@@ -30,6 +33,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class FormAddMateriel extends AppCompatActivity {
     private int idClient;
@@ -44,11 +48,16 @@ public class FormAddMateriel extends AppCompatActivity {
     private List<Integer> idsCategories = new ArrayList<>();
     private int idTypeMaterielSelected;
     private boolean isUpdate = false;
+    private LinearLayout parentLayoutItf;
+    private LinearLayout parentLayoutIp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.form_add_materiel_layout);
+        //setContentView(R.layout.form_add_materiel_layout);
+        setContentView(R.layout.form_materiel_layout);
+        parentLayoutItf = findViewById(R.id.layoutForInterfaces);
+        parentLayoutIp = findViewById(R.id.layoutForIps);
 
         Bundle extras = getIntent().getExtras();
         idClient = extras.getInt("idClient");
@@ -74,6 +83,7 @@ public class FormAddMateriel extends AppCompatActivity {
         idsCategories.add(0);
 
         typeMaterielSpinner = TypeMaterielSpinner.initTypeMaterielSpinner(this,(Spinner) findViewById(R.id.formSpinnerTypeMaterielMateriel), categories);
+
         typeMaterielSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long itemID) {
@@ -286,5 +296,25 @@ public class FormAddMateriel extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void onAddInterface(View v){
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View itfView = inflater.inflate(R.layout.fragment_interfaces, null);
+        parentLayoutItf.addView(itfView, parentLayoutItf.getChildCount() - 1);
+    }
+    public void onDeleteInterface(View v){
+        parentLayoutItf.removeView((View) v.getParent().getParent());
+    }
 
+    //PAS TOUCHER
+    public void onAddIp(View v){
+        LinearLayout parentLayoutIp = (LinearLayout) v.getParent();
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View ipView = inflater.inflate(R.layout.fragment_adressesip, null);
+        parentLayoutIp.addView(ipView, parentLayoutIp.getChildCount() - 1);
+    }
+
+    public void onDeleteIp(View v){
+        LinearLayout parentLayoutIp = (LinearLayout) v.getParent().getParent().getParent();
+        parentLayoutIp.removeView((ViewGroup)v.getParent().getParent());
+    }
 }

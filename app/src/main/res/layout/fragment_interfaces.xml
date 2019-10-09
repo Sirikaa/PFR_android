@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/formNomInterface"
+            android:hint="Nom" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/formMacInterface"
+            android:hint="Mac"/>
+        <TextView
+            android:id="@+id/libTypeInterfaceInterface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Type : " />
+        <Spinner
+            android:id="@+id/formSpinnerTypeInterfaceInterface"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <!-- PARTIE IPS -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:id="@+id/layoutForIps">
+            <TextView
+                android:id="@+id/form_ips_titre"
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="36dp"
+                android:text="Adresses IP"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="#B6DCFE"/>
+            <View
+                android:id="@+id/dividerIp"
+                style="@style/divider"
+                android:layout_height="1dp"
+                android:layout_below="@id/form_ips_titre"/>
+            <!-- INCLUDE IP -->
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/formIpv4Ip"
+                    android:hint="ipv4"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/formIpv6Ip"
+                    android:hint="ipv6"/>
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/formMasqueIp"
+                    android:hint="masque"/>
+                <TextView
+                    android:id="@+id/libTypeAffIp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Type affectation : " />
+                <Spinner
+                    android:id="@+id/formSpinnerTypeAffIp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:visibility="invisible"/>
+                    <Button
+                        android:id="@+id/buttonDeleteIp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="SUPPRIMER IP"
+                        android:backgroundTint="@android:color/holo_red_dark"
+                        android:onClick="onDeleteIp"/>
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="2"
+                        android:visibility="invisible"/>
+                </LinearLayout>
+            </LinearLayout>
+            <!-- FIN INCLUDE IP -->
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonAddIp"
+                android:text="Ajouter une IP"
+                android:onClick="onAddIp"/>
+        </LinearLayout>
+        <!-- FIN IPS -->
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:visibility="invisible"/>
+            <Button
+                android:id="@+id/buttonDeleteInterface"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SUPPRIMER INTERFACE"
+                android:backgroundTint="@android:color/holo_red_dark"
+                android:onClick="onDeleteInterface"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:visibility="invisible"/>
+        </LinearLayout>
+</LinearLayout>

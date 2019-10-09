@@ -5,4 +5,13 @@
     <string name="liste_materiels_titre">Matériels</string>
     <string name="settings">Paramètres</string>
     <string name="erreurCategorie">La catégorie sélectionnée n\'existe pas !</string>
+
+
+
+
+    <string-array name="types">
+        <item>Mobile</item>
+        <item>Office</item>
+        <item>Home</item>
+    </string-array>
 </resources>

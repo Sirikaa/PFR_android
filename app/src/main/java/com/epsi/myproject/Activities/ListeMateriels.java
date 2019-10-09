@@ -29,6 +29,7 @@ public class ListeMateriels extends AppCompatActivity {
     private List<String> categories = new ArrayList<>();
     private static final String ALLCAT = "Tous";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
