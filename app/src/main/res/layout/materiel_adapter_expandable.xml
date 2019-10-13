@@ -1,67 +1,44 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginLeft="20dp"
-    android:layout_marginRight="60dp">
-
-    <RelativeLayout
-        android:id="@+id/relativeLayoutMaterielExpandable"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        android:padding="7dp">
-
-    <TextView
-        android:id="@+id/libelleItfc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="130dp"
-        android:layout_marginBottom="20dp"
-        android:text="eth0"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/typeItfc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BLUETOOTH"
-        android:layout_toRightOf="@id/libelleItfc"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    <TextView
-        android:id="@+id/ipV4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="60dp"
-        android:layout_below="@id/libelleItfc"
-        android:layout_alignLeft="@id/libelleItfc"
-        android:text="192.168.254.250" />
-
+    android:layout_marginRight="60dp"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:padding="7dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/itfLayout"
+            android:layout_weight="0.1">
         <TextView
-            android:id="@+id/ipV6"
+            android:id="@+id/libelleItfc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/ipV4"
-            android:layout_below="@id/libelleItfc"
-            android:layout_alignLeft="@id/typeItfc"
-            android:text="IPV6" />
-
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="130dp"
+            android:layout_marginBottom="20dp"
+            android:text="eth0"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
         <TextView
-            android:id="@+id/masque"
+            android:id="@+id/typeItfc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/libelleItfc"
-            android:layout_below="@id/ipV4"
-            android:text="MASQUE" />
-
-        <TextView
-            android:id="@+id/typeAffectation"
-            android:layout_width="wrap_content"
+            android:text="BLUETOOTH"
+            android:layout_toRightOf="@id/libelleItfc"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/typeItfc"
-            android:layout_below="@id/ipV4"
-            android:text="STATIC" />
-
-    </RelativeLayout>
-</RelativeLayout>
+            android:layout_below="@id/itfLayout"
+            android:layout_weight="0.9">
+            <ExpandableListView
+                android:id="@+id/listViewIps"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:scrollbars="none"/>
+        </LinearLayout>
+</LinearLayout>

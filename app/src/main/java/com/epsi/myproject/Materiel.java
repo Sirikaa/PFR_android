@@ -15,6 +15,7 @@ public class Materiel implements Serializable{
     private List<Interface> interfaces;
 
     public Materiel() {}
+
     public Materiel(int id, String libelle, String serial) {
         this.setId(id);
         this.setLibelle(libelle);
@@ -33,6 +34,13 @@ public class Materiel implements Serializable{
         this.setLibelle(libelle);
         this.setSerial(serial);
         this.setType(type);
+    }
+
+    public Materiel(String libelle, String serial, TypeMateriel type, List<Interface> interfaces) {
+        this.setLibelle(libelle);
+        this.setSerial(serial);
+        this.setType(type);
+        this.setInterfaces(interfaces);
     }
 
     public int getId() {

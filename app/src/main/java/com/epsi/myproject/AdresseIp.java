@@ -13,8 +13,16 @@ public class AdresseIp implements Serializable {
     public AdresseIp() {
 
     }
+
     public AdresseIp(int id, String ipv4, String ipV6, String masque, TypeAffectation typeAffectation) {
         this.setId(id);
+        this.setIpv4(ipv4);
+        this.setIpv6(ipV6);
+        this.setMasque(masque);
+        this.setTypeAffectation(typeAffectation);
+    }
+
+    public AdresseIp(String ipv4, String ipV6, String masque, TypeAffectation typeAffectation) {
         this.setIpv4(ipv4);
         this.setIpv6(ipV6);
         this.setMasque(masque);

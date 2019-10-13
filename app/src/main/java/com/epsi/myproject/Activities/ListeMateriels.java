@@ -52,7 +52,7 @@ public class ListeMateriels extends AppCompatActivity {
         addMaterielButton =findViewById(R.id.addMateriel);
 
         categories.add(ALLCAT);
-        spinner = TypeMaterielSpinner.initTypeMaterielSpinner(this,(Spinner) findViewById(R.id.mySpinner), categories);
+        spinner = TypeMaterielSpinner.initSpinner(this,(Spinner) findViewById(R.id.mySpinner), categories);
 
         //Barre de sélection de catégorie
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

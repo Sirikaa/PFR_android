@@ -40,7 +40,6 @@ public class ClientAdapter extends BaseAdapter {
 
     @Override
     public View getView(int arg0, View arg1, ViewGroup arg2) {
-
         if (arg1 == null) {
 
             LayoutInflater mInflater = (LayoutInflater) _context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -59,5 +58,4 @@ public class ClientAdapter extends BaseAdapter {
         nombreMateriels.setText(String.valueOf(client.getMateriels().size()));
         return arg1;
     }
-
 }

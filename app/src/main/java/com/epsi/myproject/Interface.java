@@ -14,6 +14,12 @@ public class Interface implements Serializable{
     public Interface() {
 
     }
+    public Interface(String nom, String mac, TypeInterface type, List<AdresseIp> adressesIp) {
+        this.setNom(nom);
+        this.setMac(mac);
+        this.setType(type);
+        this.setAdressesIp(adressesIp);
+    }
     public Interface(int id, String nom, String mac, TypeInterface type, List<AdresseIp> adressesIp) {
         this.setId(id);
         this.setNom(nom);
